@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="icon" type="image/x-icon" href="/images/ys2.png">
+    <title>[[${note?.title}?:'文章详情']] - NASA4</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet"
+    th:href="@{/css/bootstrap.min.css}">
+    <link href="../static/css/material-icons.css" rel="stylesheet"
+    th:href="@{/css/material-icons.css}">
+    <link href="../static/css/details.css" rel="stylesheet" th:href="@{/css/details.css}">
+</head>
+
+<body>
+	<div class="container">
+		<div data-v-6ddb54c6="" data-v-6ede48a3="" class="suspension-panel suspension-panel" id="dispaly_a">
+			<a data-v-6ddb54c6="" title="回到顶部" class="btn to-top-btn display" id="display">
+				<i class="material-icons">keyboard_arrow_up</i>
+			</a>
+		</div>
+		<div class="row">
+			<div class="col-md-12 nav-hky">
+				<ul>
+					<li>
+						<a href="../templates/index.html">首页</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);">文章详情</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-12">
+				<div class="back-hky">
+					<div class="datail-body">
+						<div class="detail-title">
+							<div class="author">
+								<div class="detail-title">
+									<h1>公开课 #1：React 16 新特性尝鲜【第1节】</h1>
+								</div>
+								<div style="margin-top: 15px;">
+									<div class="img-div">
+										<img src="../static/images/ys.png" th:src="@{/images/ys.png}" alt="">
+									</div>
+									<a href="#">AAA</a>
+									<span class="user-em">发布时间</span>
+									<span>2017-03-04</span>
+									<span class="user-em">来自</span>
+									<span>NASA4</span>
+									<span class="user-em"></span>
+									<span>公开分享</span>
+								</div>
+							</div>
+							<!-- <p class="datail-notes">缘分与巧合，最近接触比较多的培训机构出来的人，</p> -->
+							<!-- <hr> -->
+						</div>
+						<div class="datail-content">
+							<h1>课程介绍</h1>
+							<p>
+								React 16 的发布除开源许可证和 Fiber 机制全面开启之外，还为我们提供了部分非常强大的新特性，本视频教程将通过实例带你探索这些新特性，从 Error Boundary 到 Text Only Component，再到 Portal，共 6 小节，19 分钟，每个小节实例讲解一个新特性，在讲解新特性基本用法的同时会介绍新特性的最佳实践。学完本视频教程，你将能熟练把诸如 Error Boundary，Portal 等特性运用到你的实际项目中来提高开发效率和代码质量，做到与时俱进。
+							</p>
+							<blockquote>
+								<p>
+									<b>适用人群</b>
+									<br>
+									<b>1.[必须]具备前端基础知识，了解 ES6；</b>
+									<br>
+									<b>2.[必须]具备 React 基础知识，有开发经验更好；</b>
+									<br>
+									<b>3.[可选]期望跟上社区发展动态，学习最新的开发技术，如果满足这点，前两点可忽略；</b>
+								</p>
+							</blockquote>
+							<h1>2.内容目录</h1>
+							<p>
+								1. 用 Error Boundary 处理错误
+
+为了解决未捕获错误阻塞整个应用的问题，React 16 中引入了 Error Boundary 的概念，Error Boundary 指能够捕获其所有子组件的错误并对错误做优雅处理的组件，这种优雅错误处理包括上报错误日志、展示出错提示而不是卸载整个组件树。我们在本小节中会展示如何创建 Error Boundary 组件，并使用 componentDidCatch 生命周期方法来处理捕获到的错误，此外还会展示 Error Boundary 使用的最佳实践。
+							</p>
+							<div>
+								<pre><code>aa</code>
+								</pre>
+							</div>
+							<div class="datail-img">
+								<img src="../static/images/banner.jpg" th:src="@{/images/banner.jpg}" class="img-responsive">
+							</div>
+							<div class="end">
+								<div class="hreat">
+									<i class="material-icons">favorite</i>
+									<span>111</span>
+								</div>
+								<div class="share">
+									<span>1112</span>
+									<i class="material-icons reply">reply</i>
+								</div>
+							</div>
+						</div>
+						<div class="datail-pinluen">
+							<div class="text-center datail-pinluen-titile">
+								<h2>评论</h2>
+							</div>
+							<div class="datail-pinluen-body" style="margin-top: 30px;">
+								<div class="datail-region" id="onlick">评论</div>
+								<div class="datail-form display" id="block">
+									<form name="fm_info_cn" action="">
+										<a href="#">
+											<img class="userimage" alt="hhh" src="../static/images/ys.png" th:src="@{/images/ys.png}" height="28px" width="28px">
+										</a>
+										<div class="clearfix">
+											<textarea class="form-control" rows="3" placeholder="发表评论..."></textarea>
+											<div class="hky-margin">
+												<button name="btn_comment_pub" class="btn btn-primary sendBtn" type="button">发布评论</button>
+												<button class="Jformhide btn btn-default cancelBtn" type="button" id="none">取消</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+
+							<div class="pinluen-body author">
+								<div class="border-bottom">
+									<div class="img-div">
+										<img src="../static/images/ys.png" th:src="@{/images/ys.png}" alt="">
+									</div>
+									<a href="javascript:void();">夜桜下的楓</a>
+									<p>
+										代码仓库：wangshijun/course-new-features-of-react16
+
+运行方法（建议安装和使用 yarn）
+
+git clone https://github.com/wangshijun/course-new-features-of-react16.git
+cd course-new-features-of-react16
+yarn
+yarn start
+如果要运行某节课的脚本，只需修改 src/index.js 第 4 行的 import 语句，import 对应的代码即可。
+									</p>
+									<div class="end end-end">
+										<div class="hreat">
+											<i class="material-icons">favorite</i>
+											<span>111</span>
+											<i class="material-icons margin-left">insert_comment</i>
+											<span id="reply">回复</span>
+											<div data-v-7f6a837b="" class="sub-comment--arrow" style="display:none;" id="block-b"></div>
+										</div>
+									</div>
+									<div class="input-display" id="block-a">
+										<div class="inner-input">
+											<div class="pinluenqu">
+												<i class="material-icons">extension</i>
+												<h1>暂无评论</h1>
+											</div>
+											<div class="pinluen-input">
+												<form action="#" class="">
+													<div class="row">
+														<div class="col-xs-11">
+															<input type="text" class="form-control" placeholder="评论">
+														</div>
+														<div class="col-xs-1">
+															<button class="btn btn-default" type="submit">发送</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="border-bottom">
+									<div class="img-div">
+										<img src="../static/images/ys.png" th:src="@{/images/ys.png}" alt="">
+									</div>
+									<a href="javascript:void();">树上的鱼</a>
+									<p>
+										服务端渲染（Server Side Render）并不是一个新的概念，在单页应用（SPA）还没有流行起来的时候，页面就是通过服务端渲染好，并传递给浏览器的。当用户需要访问新的页面时，需要再次请求服务器，返回新的页面。
+									</p>
+									<div class="end end-end">
+										<div class="hreat">
+											<i class="material-icons">favorite</i>
+											<span>111</span>
+											<i class="material-icons margin-left">insert_comment</i>
+											<span id="reply">回复</span>
+											<div data-v-7f6a837b="" class="sub-comment--arrow" style="display:none;" id="block-b"></div>
+										</div>
+									</div>
+									<div class="input-display" id="block-a">
+										<div class="inner-input">
+											<div class="pinluenqu">
+												<i class="material-icons">extension</i>
+												<h1>暂无评论</h1>
+											</div>
+											<div class="pinluen-input">
+												<form action="#" class="">
+													<div class="row">
+														<div class="col-xs-11">
+															<input type="text" class="form-control" placeholder="评论">
+														</div>
+														<div class="col-xs-1">
+															<button class="btn btn-default" type="submit">发送</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="border-bottom">
+									<div class="img-div">
+										<img src="../static/images/face3.png" th:src="@{/images/face3.png}" alt="">
+									</div>
+									<a href="javascript:void();">风华决胜</a>
+									<p>
+										为了优化体验，开发者们开始选择采用 JavaScript 在前端完成渲染过程，用前后端分离的手段，使后端更专注于数据，而前端注重于处理展示，通过设计良好的 API 以及 Ajax 技术完成前后端的交互，jQuery、React.js、Vue.js、Angular.js 等框架应运而生。
+									</p>
+									<div class="end end-end">
+										<div class="hreat">
+											<i class="material-icons">favorite</i>
+											<span>111</span>
+											<i class="material-icons margin-left">insert_comment</i>
+											<span id="reply">回复</span>
+											<div data-v-7f6a837b="" class="sub-comment--arrow" style="display:none;" id="block-b"></div>
+										</div>
+									</div>
+									<div class="input-display" id="block-a">
+										<div class="inner-input">
+											<div class="pinluenqu">
+												<i class="material-icons">extension</i>
+												<h1>暂无评论</h1>
+											</div>
+											<div class="pinluen-input">
+												<form action="#" class="">
+													<div class="row">
+														<div class="col-xs-11">
+															<input type="text" class="form-control" placeholder="评论">
+														</div>
+														<div class="col-xs-1">
+															<button class="btn btn-default" type="submit">发送</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="border-bottom">
+									<div class="img-div">
+										<img src="../static/images/face4.png" th:src="@{/images/face4.png}" alt="">
+									</div>
+									<a href="javascript:void();">屋子青鸾</a>
+									<p>
+										这些框架给开发者带来了巨大的便利，但是对于一些论坛、资讯网站、或是企业的官方网站来说，他们对搜索引擎优化（SEO）有强烈的要求，而前端渲染技术是无法满足他们的需求的。如果无法通过搜索引擎的搜索输出自身的内容，那么网站的价值就会大大受影响，要解决这类问题，还是要靠服务端渲染。
+									</p>
+									<div class="end end-end">
+										<div class="hreat">
+											<i class="material-icons">favorite</i>
+											<span>111</span>
+											<i class="material-icons margin-left">insert_comment</i>
+											<span id="reply">回复</span>
+											<div data-v-7f6a837b="" class="sub-comment--arrow" style="display:none;" id="block-b"></div>
+										</div>
+									</div>
+									<div class="input-display" id="block-a">
+										<div class="inner-input">
+											<div class="pinluenqu">
+												<i class="material-icons">extension</i>
+												<h1>暂无评论</h1>
+											</div>
+											<div class="pinluen-input">
+												<form action="#" class="">
+													<div class="row">
+														<div class="col-xs-11">
+															<input type="text" class="form-control" placeholder="评论">
+														</div>
+														<div class="col-xs-1">
+															<button class="btn btn-default" type="submit">发送</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="footer_in_bottom">
+      Copyright &copy; 2017 NASA4.com
+      <ul class="f-menu">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">隐私权</a></li>
+        <li><a href="#">服务条款</a></li>
+        <li><a href="#">发送反馈</a></li>
+        <li><a href="#">常见问题</a></li>
+        <li><a href="#">帮助</a></li>
+        <li><a href="#">联系我们</a></li>
+      </ul>
+    </footer>
+	</div>
+
+	<script src="../static/js/jquery-1.11.3.min.js" th:src="@{/js/jquery-1.11.3.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/datail.js" th:src="@{/js/datail.js}"></script>
+</body>
+
+</html>

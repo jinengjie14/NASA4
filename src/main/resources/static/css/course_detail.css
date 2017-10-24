@@ -1,0 +1,114 @@
+/*课程详情*/
+.card.blog-post{
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+    position: relative;
+}
+.blog-post .bp-header {
+    position: relative;
+}
+.blog-post .pro-banner {
+    height: 160px;
+    position: relative;
+    z-index: 1;
+    background: url(../images/banner/banner5.jpg) center / cover;
+}
+.media_user{
+    margin: 80px 25px;
+}
+.blog-post .pro-banner .card-header .light-border img {
+    border: 2px solid #fff;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+.blog-post .pro-banner .card-header .banner-header small {
+    display: block;
+    margin-top: 8px;
+    color: #fff;
+    line-height: 160%;
+}
+.blog-post .pro-banner .card-header .banner-header {
+    padding: 5px 15px;
+}
+.blog-post .pro-banner .card-header .banner-header p {
+    font-size: 16px;
+    color: #fff;
+}
+.blog-post .m-button {
+    text-align: right;
+    margin-top: -35px;
+}
+.blog-post nav.ha-menu > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.blog-post nav.ha-menu > ul > li {
+    display: inline-block;
+    vertical-align: top;
+    padding: 15px 12px;
+        
+}
+.blog-post nav.ha-menu > ul > li a{
+    color: #333;
+    cursor: pointer;
+}
+.list .card{
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+    position: relative;
+    margin-top: -5px;
+}
+.list .chapter-title {
+    background: #f7f7f7 none repeat scroll 0 0;
+    font-size: 14px;
+    font-weight: 700;
+    height: 45px;
+    line-height: 45px;
+    overflow: hidden;
+    padding: 0 80px 0 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+.list .chapter p {
+    color: #555;
+    padding: 22px 22px;
+    line-height: 24px;
+}
+.list .chapter ul li {
+    list-style: none;
+    padding: 5px 0;
+}
+.list .chapter ul li a{
+    color: #333;
+}
+.list .chapter div#jstree_demo2 {
+    margin-top: 15px;
+    padding-bottom: 3px;
+}
+.chapter-title .detailMenu ul.actions.right-menu {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    z-index: 2;
+    list-style: none;
+}
+.chapter-title .detailMenu ul.actions.right-menu i {
+    color: #777;
+    font-size: 20px;
+}
+.list .chapter div#jstree_demo2 i.material-icons{
+    vertical-align: bottom;
+}
+.c-button {
+    text-align: right;
+    padding: 21px 38px;
+}
+.header-inner li.active.waves-effect {
+    border-bottom: 2px solid #2196f3;
+}
+/*课程详情end*/

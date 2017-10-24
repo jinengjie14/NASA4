@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../static/js/messenger/css/messenger.css" th:href="@{/js/messenger/css/messenger.css}">
+<link rel="stylesheet" href="../static/js/messenger/css/messenger-theme-flat.css" th:href="@{/js/messenger/css/messenger-theme-air.css}">
+<link href="../static/js/editormd/css/editormd.min.css" rel="stylesheet" th:href="@{/js/editormd/css/editormd.min.css}" />
+</head>
+<style>
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #4962B3;
+  font-size: 12px;
+  border: 1px solid #3e549a;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+.swal-footer {
+    text-align:center;
+}
+</style>
+<body>
+<form action="/note" method="post">
+<input name="title">
+<div id="editormd">
+    <textarea style="display:none;" name="content"></textarea>
+</div>
+<input name="reload" type="hidden" th:value="${url}">
+<input id="note" type="button" name="submit" value="提交">
+</form>
+<script src="../static/js/jquery-1.11.3.min.js" th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script src="../static/js/jquery.session.js" th:src="@{/js/jquery.session.js}"></script>
+<script src="../static/js/messenger/js/messenger.min.js" th:src="@{/js/messenger/js/messenger.min.js}"></script>
+<script src="../static/js/messenger/js/messenger-theme-flat.js" th:src="@{/js/messenger/js/messenger-theme-flat.js}"></script>
+<script src="../static/js/editormd/editormd.min.js" th:src="@{/js/editormd/editormd.min.js}"></script>
+<script src="../static/js/sweetalert.min.js" th:src="@{/js/sweetalert.min.js}"></script>
+<script src="../static/js/base.js" th:src="@{/js/base.js}"></script>
+<script type="text/javascript">
+	var testEditor;
+	
+	$(function() {
+	    testEditor = editormd("editormd", {
+	        width   : "90%",
+	        height  : 640,
+	        syncScrolling : "single",
+	        path    : "/js/editormd/lib/"
+	    });
+	    
+	    $(document).on("click", "#note", function(e) {
+	    	var title = $("[name=title]").val();
+	    	var content = $("[name=content]").val();
+	    	$.session.set("draftTitle", title);
+	    	$.session.set("draftContent", content);
+	    })
+	    
+	    $(document).ready(function(e) {
+	    	$("[name=title]").val($.session.get("draftTitle"));
+	    	$("[name=content]").val($.session.get("draftContent"));
+	    	$.session.remove("draftTitle");
+            $.session.remove("draftContent");
+	    })
+	    
+	});
+</script>
+</body>
+</html>
