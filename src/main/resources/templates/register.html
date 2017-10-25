@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>无标题文档</title>
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet"  th:href="@{/css/bootstrap.min.css}" />
+  <link href="../static/css/icheck/icheck_all.css" rel="stylesheet" th:href="@{/css/icheck/icheck_all.css}">
+  <link href="../static/css/user.css" rel="stylesheet"  th:href="@{/css/user.css}" />
+</head>
+
+<body>
+  <div id='stars'></div>
+                          <div id='stars2'></div><div id='stars3'></div>
+  <div class="container text-center">
+    <div class="row">
+    <div class="login-content">
+                      <div class="logo-login"><img class="ys2" src="../static/images/ys2.png" th:src="@{/images/ys2.png}">
+          </div>
+      <div class="login-body">
+        <form action="#" method="post" th:action="@{/register}">
+          <div class="full-auth mt-3">
+            <!-- <label for="account">输入手机或邮箱</label> -->
+            <input  class="login_field" id="account" name="account" th:data-url="@{/register/account/detect}"  type="text" placeholder="输入手机或邮箱">
+            <span class="help-block" data-error="account"></span>
+          </div>
+          <div class="full-auth mt-3">
+            <!-- <label for="password">输入6至16位密码</label> -->
+            <input  class="login_field" id="npassword" name="npassword" type="password" placeholder="输入6至16位密码">
+            <span class="help-block" data-error="npassword"></span>
+          </div>
+          <div class="full-auth mt-3">
+            <!-- <label for="password">确认密码</label> -->
+            <input  class="login_field" id="cpassword" name="cpassword" type="password" placeholder="确认密码">
+            <span class="help-block" data-error="cpassword"></span>
+          </div>
+          
+          <div class="po-re">
+            <div class="full-auth vericodes_register">
+              <!-- <label for="vcode">输入验证码</label> -->
+              <input  class="login_field" id="regCode" name="vcode" type="vcode" placeholder="输入验证码">
+              <span class="help-block" data-error="vcode"></span>
+              <button class="btn btn-default btn-color2" id="btn_send" type="button" th:data-url="@{/register/vcode/send}" >获取验证码</button>
+            </div>
+          </div>
+          
+          <div class="user_fuwu full-auth vericodes_register full-width">
+            <label>
+              <input name="agree" type="checkbox" id="agree" value="yes"> 同意服务条款
+              <span class="help-block inline" data-error="agree"></span>
+            </label>
+          </div>
+          <button type="button" class="btn btn-default btn-color" id="btn_register"  name="submit">确定注册</button>
+        </form>
+      </div>
+      <div class="create-account ">
+        <span>已有账号？<a href="login.html" th:href="@{/login}" class="signup-link">直接登录</a></span>
+        <a th:href="@{/forget}" href="forget.html" class="forgets-password doo">忘记密码?</a>
+      </div> 
+    </div>
+  </div>
+</div>
+ <footer class="footer_in_bottom">
+      Copyright &copy; 2017 NASA4.com
+      <ul class="f-menu">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">隐私权</a></li>
+        <li><a href="#">服务条款</a></li>
+        <li><a href="#">发送反馈</a></li>
+        <li><a href="#">常见问题</a></li>
+        <li><a href="#">帮助</a></li>
+        <li><a href="#">联系我们</a></li>
+      </ul>
+    </footer>
+
+
+<script src="../static/js/jquery-1.11.3.min.js" th:src="@{/js/jquery-1.11.3.min.js}"></script> 
+<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<link rel="stylesheet" href="../static/js/messenger/css/messenger.css" th:href="@{/js/messenger/css/messenger.css}">
+<link rel="stylesheet" href="../static/js/messenger/css/messenger-theme-flat.css" th:href="@{/js/messenger/css/messenger-theme-flat.css}">
+<script src="../static/js/messenger/js/messenger.min.js" th:src="@{/js/messenger/js/messenger.min.js}"></script>
+<script src="../static/js/messenger/js/messenger-theme-flat.js" th:src="@{/js/messenger/js/messenger-theme-flat.js}"></script>
+<script>
+$(function() {
+  $("#btn_send").prop("disabled",true);
+  $("[data-error]").html("");
+  $("[name='account']").change(function(e) {
+        var url = $(this).data("url");
+        var account = $(this).val();
+    var name = "[data-error='account']";
+        $.post(url, {account:account}, function(json) {
+            if (json.result == "exist") {
+        $(name).html("账号被占用。");
+      } else if (json.result == "format_error") {
+        $(name).html("请输入邮箱或手机号。");
+      } else if (json.result == "email" || json.result == "mobile") {
+        $(name).html("可用。");
+        $("#btn_send").prop("disabled",false);
+      }
+        }, "json");
+    });
+  
+  $("#btn_send").click(function(e) {
+    var form = $(this).parents("form");
+    var url = $(this).data("url");
+    var account = form.find("[name='account']").val();
+    resetSend();
+        post(form, url, {account:account});
+    });
+
+  //倒计时
+  function resetSend(){
+    $('#btn_send').hide();
+    $('#send_second').html('60');
+    $('#btn_send_reset').show();
+    var second = 60;
+    var timer = null;
+    timer = setInterval(function(){
+      second -= 1;
+      if(second >0 ){
+        $('#send_second').html(second);
+      }else{
+        clearInterval(timer);
+        $('#btn_send').show();
+        $('#btn_send_reset').hide();
+      }
+    },1000);
+  }
+  
+});
+</script>
+<script src="../static/js/icheck.min.js" th:src="@{/js/icheck.min.js}"></script>
+<script>
+  $(document).ready(function(){
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
+</body>
+</html>

@@ -72,5 +72,15 @@ public class LoginController extends BaseController {
 		session.removeAttribute("user");
 		return "redirect:"+reload;
 	}
+	
+	@GetMapping("/register")
+	public String register() {
+		return "register";
+	}
+	
+	@GetMapping("/forget")
+	public String forget() {
+		return "forget";
+	}
 
 }
