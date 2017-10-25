@@ -12,11 +12,24 @@
 <link href="../static/js/editormd/css/editormd.min.css" rel="stylesheet"
 	th:href="@{/js/editormd/css/editormd.min.css}" />
 </head>
-
+<style>
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #4962B3;
+  font-size: 12px;
+  border: 1px solid #3e549a;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+.swal-footer {
+    text-align:center;
+}
+</style>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="input-topp"></div>
+			<form action="/note" method="post">
 			<div class="col-md-12 col-md-12 col-sm-12 col-xs-12 row_overside"
 				style="margin-top: 12px;">
 				<div class="card card_div_add">
@@ -46,14 +59,12 @@
 					<textarea style="display: none;" name="content"></textarea>
 				</div>
 			</div>
-
-
-
+            <input name="reload" type="hidden" th:value="${url}">
 			<div class="col-md-12 col-md-12 col-sm-12 col-xs-12 btn-sub">
 				<button class="btn btn-success" id="note" type="button"
 					name="submit">提交</button>
 			</div>
-
+           </form>
 
 		</div>
 	</div>

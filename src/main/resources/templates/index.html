@@ -28,7 +28,7 @@
     <div class="header">
       <div class="drawer_button"><i class="material-icons">menu</i></div>
       <div class="layout_header-row">
-        <div class="logo"><img class="ys" src="../static/images/ys.png" th:src="@{/images/ys.png}"><a href="#">NAS4</a>
+        <div class="logo"><img class="ys" src="../static/images/ys.png" th:src="@{/images/ys.png}"><a href="#">NASA4</a>
           </div>
         <ul class="top-menu">  
           <li class="mitem">
@@ -49,8 +49,8 @@
             </a>
           </li>
           <!-- <li class="mitem"><a class="mitema" href="javascript:void(0);"><i class="material-icons">comment</i></a></li> -->
-          <!-- <li class="mitem"><a class="mitema" href="javascript:void(0);"><span>登录/注册</span></a></li>未登录-->
-          <li class="mitem has-feedback"><!--已登录-->
+          <li class="mitem" th:if="${sessionUser?.id == null}"><a class="mitema" href="javascript:void(0);" th:href="@{/login}"><span>登录/注册</span></a></li><!-- 未登录 -->
+          <li class="mitem has-feedback" th:if="${sessionUser?.id != null}"><!-- 已登录 -->
             <a class="mitema" id="top-thisuse" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="../static/images/face14.png" th:src="@{/images/face14.png}" alt="" class="header_userimg"/>
             </a>
@@ -77,7 +77,7 @@
                     </div>
                   </div>
                 </div>
-                <a href="javascript:void(0);" class="lv-footer m-t-10 loginOut" id="JLogout">退出</a> 
+                <a href="javascript:void(0);" th:href="@{/logout (reload=${url})}" class="lv-footer m-t-10 loginOut" id="JLogout">退出</a> 
               </div>
             </div>
           </li>

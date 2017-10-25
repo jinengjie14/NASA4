@@ -219,7 +219,7 @@ a.doqqu {
 #leftsead{width: 131px;
     height: 143px;
     position: fixed;
-    top: 75%;
+    top: 68%;
     right: 40px;}
 *html #leftsead{margin-top:258px;position:absolute;top:expression(eval(document.documentElement.scrollTop));}
 #leftsead li{width:131px;height:53px;}

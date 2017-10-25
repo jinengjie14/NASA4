@@ -61,9 +61,16 @@ public class LoginController extends BaseController {
 	}
 	
 	@GetMapping("/login")
-	public String test(Model model, @RequestParam(defaultValue="") String reload) {
+	public String login(Model model, @RequestParam(defaultValue="") String reload) {
 		model.addAttribute("reload", reload);
 		return "login";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session, Model model, @RequestParam(defaultValue="/") String reload) {
+		session.removeAttribute("userId");
+		session.removeAttribute("user");
+		return "redirect:"+reload;
 	}
 
 }

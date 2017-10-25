@@ -14,7 +14,7 @@ import com.nasa4.note.domain.User;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class BaseController {
+public abstract class BaseController {
 	@Autowired
 	private HttpServletRequest httpRequest;
 
@@ -30,9 +30,8 @@ public class BaseController {
 	public void getSessionUser(HttpServletRequest request, HttpSession session, Model model) {
 		sessionUserId = (String) session.getAttribute("userId");
 		sessionUser = (User) session.getAttribute("user");
-		log.info(sessionUserId);
-		
 		if (StringUtils.isNotBlank(sessionUserId)) {
+			log.info(sessionUserId);
 			model.addAttribute("sessionUser", sessionUser);
 		}
 	}
@@ -48,11 +47,12 @@ public class BaseController {
 		this.reload = reload;
 	}
 	
-	public void getUrl(Model model) {
+	public String getUrl(Model model) {
 		String url = httpRequest.getRequestURL().toString();
 		if (StringUtils.isNotBlank(httpRequest.getQueryString()))
 			url += "?" + httpRequest.getQueryString();
 		log.info("url====================="+url);
 		model.addAttribute("url", url);
+		return url;
 	}
 }
