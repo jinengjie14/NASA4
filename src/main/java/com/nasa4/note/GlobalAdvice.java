@@ -65,6 +65,7 @@ public class GlobalAdvice {
 		
 		map.put(ex.getField(), message);
 		map.put("tourl", tourl);
+		log.info("reload====================="+ex.getReload());
 		log.info("url====================="+tourl);
 		return map;
 	}

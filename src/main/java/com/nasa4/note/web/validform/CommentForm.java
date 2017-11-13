@@ -5,10 +5,10 @@ import org.hibernate.validator.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class NoteForm {
-	@NotBlank(message = "note.title.isnull")
-	private String title;
-	@NotBlank(message = "note.markdown.isnull")
+public class CommentForm {
+	
+	@NotBlank(message="comment.content.isnull")
 	private String content;
+	private String noteId;
 
 }

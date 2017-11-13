@@ -115,6 +115,7 @@ button.btn.btn-default.btn-color {
     margin-top: 11px;
     font-size: 13px;
     height: 36px;
+    background-image: linear-gradient(-60deg, #3f69f4 0%, #16a085 59%);
 }
 button.btn.btn-default.btn-color2 {
     color: #fff;

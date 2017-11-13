@@ -1,5 +1,6 @@
 package com.nasa4.note.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
@@ -15,22 +16,28 @@ public class MarkdownUtil {
 	 * @return
 	 */
 	public static String substring(String makdown, int num, String suffix) {
-		String html = MDTool.markdown2Html(makdown);
-		String htmlText = Jsoup.parseBodyFragment(html).text();
-		if(htmlText.length() > num) {
-			htmlText = new StringBuffer(htmlText).substring(0, num) + suffix;
+		if(StringUtils.isNoneBlank(makdown)) {
+			String html = MDTool.markdown2Html(makdown);
+			String htmlText = Jsoup.parseBodyFragment(html).text();
+			if(htmlText.length() > num) {
+				htmlText = new StringBuffer(htmlText).substring(0, num) + suffix;
+			}
+			return htmlText;
 		}
-		return htmlText;
+		return null;
 	}
 	
 	public static String getFirstImage(String makdown) {
-		String html = MDTool.markdown2Html(makdown);
-		String image = null;
-		Element element = Jsoup.parseBodyFragment(html).getElementsByTag("img").first();
-		if(null != element) {
-			image = element.attr("src");
+		if(StringUtils.isNoneBlank(makdown)) {
+			String html = MDTool.markdown2Html(makdown);
+			String image = null;
+			Element element = Jsoup.parseBodyFragment(html).getElementsByTag("img").first();
+			if(null != element) {
+				image = element.attr("src");
+			}
+			return image;
 		}
-		return image;
+		return null;
 	}
 
 }

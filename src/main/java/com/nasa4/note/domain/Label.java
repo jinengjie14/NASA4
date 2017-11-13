@@ -6,9 +6,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
@@ -24,6 +23,6 @@ public class Label {
 	private String name;
 	private int count;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	private Date createTime;
 }

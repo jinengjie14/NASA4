@@ -1,4 +1,4 @@
-package com.nasa4.note.web;
+package com.nasa4.note.responsebean;
 
 import com.nasa4.note.domain.User;
 

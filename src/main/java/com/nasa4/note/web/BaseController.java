@@ -33,7 +33,17 @@ public abstract class BaseController {
 		if (StringUtils.isNotBlank(sessionUserId)) {
 			log.info(sessionUserId);
 			model.addAttribute("sessionUser", sessionUser);
+			model.addAttribute("sessionUserId", sessionUserId);
 		}
+		model.addAttribute("url", request.getRequestURI());
+	}
+	
+	@ModelAttribute
+	public void getUrl(Model model) {
+		String url = httpRequest.getRequestURL().toString();
+		if (StringUtils.isNotBlank(httpRequest.getQueryString()))
+			url += "?" + httpRequest.getQueryString();
+		model.addAttribute("reload", url);
 	}
 	
 	@ModelAttribute
@@ -44,15 +54,7 @@ public abstract class BaseController {
 		this.keyword = keyword;
 		this.pageSize = pageSize;
 		this.page = page;
-		this.reload = reload;
+		this.reload = StringUtils.isNoneBlank(reload) ? reload : "/";
 	}
 	
-	public String getUrl(Model model) {
-		String url = httpRequest.getRequestURL().toString();
-		if (StringUtils.isNotBlank(httpRequest.getQueryString()))
-			url += "?" + httpRequest.getQueryString();
-		log.info("url====================="+url);
-		model.addAttribute("url", url);
-		return url;
-	}
 }

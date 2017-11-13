@@ -83,6 +83,12 @@
 			<artifactId>okhttp</artifactId>
 			<version>3.9.0</version>
 		</dependency>
+		<!-- 时间人性化 -->
+		<dependency>
+		   <groupId>org.ocpsoft.prettytime</groupId>
+		   <artifactId>prettytime</artifactId>
+		   <version>4.0.1.Final</version>
+		</dependency>
 		
 		<dependency>
             <groupId>org.springframework.boot</groupId>

@@ -9,6 +9,8 @@
     <link href="../static/css/material-icons.css" rel="stylesheet"
     th:href="@{/css/material-icons.css}">
     <link href="../static/css/details.css" rel="stylesheet" th:href="@{/css/details.css}">
+    <link rel="stylesheet" href="../static/js/messenger/css/messenger.css" th:href="@{/js/messenger/css/messenger.css}">
+    <link rel="stylesheet" href="../static/js/messenger/css/messenger-theme-flat.css" th:href="@{/js/messenger/css/messenger-theme-air.css}">
 </head>
 
 <body>
@@ -22,10 +24,10 @@
 			<div class="col-md-12 nav-hky">
 				<ul>
 					<li>
-						<a href="../templates/index.html">首页</a>
+						<a href="../templates/index.html" th:href="@{/}">首页</a>
 					</li>
 					<li>
-						<a href="javascript:void(0);">文章详情</a>
+						<a href="javascript:void(0);" th:text="${note?.title}">文章详情</a>
 					</li>
 				</ul>
 			</div>
@@ -35,17 +37,19 @@
 						<div class="detail-title">
 							<div class="author">
 								<div class="detail-title">
-									<h1>公开课 #1：React 16 新特性尝鲜【第1节】</h1>
+									<h1 th:text="${note?.title}">公开课 #1：React 16 新特性尝鲜【第1节】</h1>
 								</div>
 								<div style="margin-top: 15px;">
 									<div class="img-div">
 										<img src="../static/images/ys.png" th:src="@{/images/ys.png}" alt="">
 									</div>
-									<a href="#">AAA</a>
+									<a href="#" th:text="${note?.user?.account}">AAA</a>
 									<span class="user-em">发布时间</span>
-									<span>2017-03-04</span>
+									<span th:text="${note?.prettyCreateTime()}">2017-03-04</span>
+									<span class="user-em">最后更新</span>
+                                    <span th:text="${note?.prettyUpdateTime()}">2017-03-04</span>
 									<span class="user-em">来自</span>
-									<span>NASA4</span>
+									<span th:text="${note?.user?.account}">NASA4</span>
 									<span class="user-em"></span>
 									<span>公开分享</span>
 								</div>
@@ -53,7 +57,8 @@
 							<!-- <p class="datail-notes">缘分与巧合，最近接触比较多的培训机构出来的人，</p> -->
 							<!-- <hr> -->
 						</div>
-						<div class="datail-content">
+						<div id="editormds" class="datail-content" th:remove="all-but-first">
+						    <textarea style="display:none;" name="markdown" th:text="${note?.content}"></textarea>
 							<h1>课程介绍</h1>
 							<p>
 								React 16 的发布除开源许可证和 Fiber 机制全面开启之外，还为我们提供了部分非常强大的新特性，本视频教程将通过实例带你探索这些新特性，从 Error Boundary 到 Text Only Component，再到 Portal，共 6 小节，19 分钟，每个小节实例讲解一个新特性，在讲解新特性基本用法的同时会介绍新特性的最佳实践。学完本视频教程，你将能熟练把诸如 Error Boundary，Portal 等特性运用到你的实际项目中来提高开发效率和代码质量，做到与时俱进。
@@ -100,14 +105,16 @@
 							<div class="datail-pinluen-body" style="margin-top: 30px;">
 								<div class="datail-region" id="onlick">评论</div>
 								<div class="datail-form display" id="block">
-									<form name="fm_info_cn" action="">
+									<form name="fm_info_cn" action="/comment">
 										<a href="#">
 											<img class="userimage" alt="hhh" src="../static/images/ys.png" th:src="@{/images/ys.png}" height="28px" width="28px">
 										</a>
 										<div class="clearfix">
-											<textarea class="form-control" rows="3" placeholder="发表评论..."></textarea>
+											<textarea class="form-control" name="content" rows="3" placeholder="发表评论..."></textarea>
+											<input type="hidden" name="noteId" th:value="${note?.id}">
+											<input name="reload" type="hidden" th:value="${reload}">
 											<div class="hky-margin">
-												<button name="btn_comment_pub" class="btn btn-primary sendBtn" type="button">发布评论</button>
+												<button name="submit" class="btn btn-primary sendBtn" type="button">发布评论</button>
 												<button class="Jformhide btn btn-default cancelBtn" type="button" id="none">取消</button>
 											</div>
 										</div>
@@ -115,13 +122,13 @@
 								</div>
 							</div>
 
-							<div class="pinluen-body author">
-								<div class="border-bottom">
+							<div class="pinluen-body author" th:remove="all-but-first">
+								<div class="border-bottom" th:each="comment:${note?.comments}">
 									<div class="img-div">
 										<img src="../static/images/ys.png" th:src="@{/images/ys.png}" alt="">
 									</div>
-									<a href="javascript:void();">夜桜下的楓</a>
-									<p>
+									<a href="javascript:void();" th:text="${note?.user?.account}">夜桜下的楓</a>
+									<p th:text="${comment?.content}">
 										代码仓库：wangshijun/course-new-features-of-react16
 
 运行方法（建议安装和使用 yarn）
@@ -133,13 +140,13 @@ yarn start
 如果要运行某节课的脚本，只需修改 src/index.js 第 4 行的 import 语句，import 对应的代码即可。
 									</p>
 									<div class="end end-end">
-										<div class="hreat">
+										<!-- <div class="hreat">
 											<i class="material-icons">favorite</i>
 											<span>111</span>
 											<i class="material-icons margin-left">insert_comment</i>
 											<span id="reply">回复</span>
 											<div data-v-7f6a837b="" class="sub-comment--arrow" style="display:none;" id="block-b"></div>
-										</div>
+										</div> -->
 									</div>
 									<div class="input-display" id="block-a">
 										<div class="inner-input">
@@ -298,7 +305,27 @@ yarn start
 
 	<script src="../static/js/jquery-1.11.3.min.js" th:src="@{/js/jquery-1.11.3.min.js}"></script>
     <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/messenger/js/messenger.min.js" th:src="@{/js/messenger/js/messenger.min.js}"></script>
+    <script src="../static/js/messenger/js/messenger-theme-flat.js" th:src="@{/js/messenger/js/messenger-theme-flat.js}"></script>
     <script src="../static/js/datail.js" th:src="@{/js/datail.js}"></script>
+    <script src="../static/js/base.js" th:src="@{/js/base.js}"></script>
+    <script src="../static/js/sweetalert.min.js" th:src="@{/js/sweetalert.min.js}"></script>
+    <script src="../static/js/editormd/editormd.min.js" th:src="@{/js/editormd/editormd.min.js}"></script>
+    <script src="../static/js/editormd/lib/marked.min.js" th:src="@{/js/editormd/lib/marked.min.js}"></script>
+    <script src="../static/js/editormd/lib/prettify.min.js" th:src="@{/js/editormd/lib/prettify.min.js}"></script>
+    <script src="../static/js/editormd/lib/raphael.min.js" th:src="@{/js/editormd/lib/raphael.min.js}"></script>
+    <script src="../static/js/editormd/lib/underscore.min.js" th:src="@{/js/editormd/lib/underscore.min.js}"></script>
+    <script src="../static/js/editormd/lib/sequence-diagram.min.js" th:src="@{/js/editormd/lib/sequence-diagram.min.js}"></script>
+    <script src="../static/js/editormd/lib/flowchart.min.js" th:src="@{/js/editormd/lib/flowchart.min.js}"></script>
+    <script src="../static/js/editormd/lib/jquery.flowchart.min.js" th:src="@{/js/editormd/lib/jquery.flowchart.min.js}"></script>
+    
+    <script type="text/javascript">
+      $(function() {
+          var editor = editormd.markdownToHTML("editormds", {
+              path: "[[@{/js/editormd/lib/}]]",
+          });
+      });
+    </script> 
 </body>
 
 </html>

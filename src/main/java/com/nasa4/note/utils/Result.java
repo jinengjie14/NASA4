@@ -23,6 +23,10 @@ public class Result {
 		return map;
 	}
 	
+	public static Result reload(String reload, String msg) throws Exception {
+		return new Result(AESenc.decrypt(reload), 200, msg);
+	}
+	
 	public static Result success(String tourl, String msg) {
 		return new Result(tourl, 200, msg);
 	}

@@ -37,21 +37,46 @@ $(function(){
 				});
         	} else {
                  $.each(json, function(field, message) {
-                     if (field != "tourl") {
-                         var name = form.find("[data-error='" + field + "']");
-                         if (name.length > 0) {
-                             name.html(message);
-                         } else {
-                             Messenger().post({
-                                 message: message,
-                                 type: 'error',
-                                 hideAfter: 2,
-                                 showCloseButton: true
-                             });
-                         }
+                     var name = form.find("[data-error='" + field + "']");
+                     if (name.length > 0) {
+                         name.html(message);
+                     } else {
+                         Messenger().post({
+                             message: message,
+                             type: 'error',
+                             hideAfter: 2,
+                             showCloseButton: true
+                         });
                      }
                  });
         	}
         }, "json");
     });
+	
+	$(document).on("click", "[data-delete]", function() {
+		$.ajax({
+			url: $(this).data("delete"),
+			type: "DELETE",
+			dataType: "json",
+			success: function(json) {
+				console.log("success");
+				if (json.code == 200) {
+					Messenger().post({
+		       			message: json.msg,
+		                type: 'success',
+		                hideAfter: 3,
+		                showCloseButton: true
+		            });
+		       		if(json.tourl == "reload") {
+		       			window.location.reload();
+		       		} else {
+		       			window.location.href = json.tourl;
+		       		}
+				}
+			},
+			error: function(json) {
+				console.log("error");
+			}
+		});
+	})
 })

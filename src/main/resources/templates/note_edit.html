@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="icon" type="image/x-icon" href="/images/ys2.png">
-<title>发布 - NASA4</title>
+<title>修改 - NASA4</title>
 <link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 <link href="../static/css/material-icons.css" rel="stylesheet" th:href="@{/css/material-icons.css}">
 <link href="../static/css/details.css" rel="stylesheet" th:href="@{/css/details.css}">
@@ -32,12 +32,15 @@
                         <a href="../templates/index.html" th:href="@{/}">首页</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);">发布文章</a>
+                        <a href="javascript:void(0);" th:href="@{/note/{id} (id=${note?.id})}" th:text="${note?.title}">文章详情</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">文章修改</a>
                     </li>
                 </ul>
             </div>
 			<div class="input-topp"></div>
-			<form action="/note" method="post">
+			<form th:action="@{/note/{id} (id=${note?.id}, _method='put')}" method="post">
 			<div class="col-md-12 col-md-12 col-sm-12 col-xs-12 row_overside"
 				style="margin-top: 12px;">
 				<div class="card card_div_add">
@@ -49,13 +52,13 @@
 						<img class="card_photo" src="/images/face14.png" alt="">
 						<div class="title_title">
 								<p class="title_Vice" th:text="${sessionUser?.account}">用户</p>
-                            <p class="title_Vice_sm" th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">公开分享-2017-2-27</p>
+							<p class="title_Vice_sm" th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">公开分享-2017-2-27</p>
 						</div>
 					</div>
 					<div class="card-block card_conetent">
 						<input type="text" class="form-control" name="title"
-							placeholder="输入标题"> <span class="help-block"
-							data-error="title"></span>
+							placeholder="输入标题" th:value="${note?.title}"> <span class="help-block"
+							data-error="title"></span>   
 					</div>
 
 					<ul class="nav_add">
@@ -105,7 +108,8 @@
 	<script src="../static/js/sweetalert.min.js"
 		th:src="@{/js/sweetalert.min.js}"></script>
 	<script src="../static/js/base.js" th:src="@{/js/base.js}"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" th:inline="javascript">
+	/* <![CDATA[ */
 		var testEditor;
 
 		$(function() {
@@ -113,23 +117,11 @@
 				width : "100%",
 				height : 640,
 				syncScrolling : "single",
-				path : "/js/editormd/lib/"
+				path : "/js/editormd/lib/",
+				markdown: /*[[${note?.content}]]*/'Test'
 			});
-
-			/* $(document).on("click", "#note", function(e) {
-				var title = $("[name=title]").val();
-				var content = $("[name=content]").val();
-				$.session.set("draftTitle", title);
-				$.session.set("draftContent", content);
-			})
-
-			$(document).ready(function(e) {
-				$("[name=title]").val($.session.get("draftTitle"));
-				$("[name=content]").val($.session.get("draftContent"));
-				$.session.remove("draftTitle");
-				$.session.remove("draftContent");
-			}) */
 		});
+		/*]]>*/
 	</script>
 </body>
 
