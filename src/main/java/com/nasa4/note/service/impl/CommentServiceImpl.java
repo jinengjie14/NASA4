@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.nasa4.note.dao.CommentRepository;
+import com.nasa4.note.dao.NoteRepository;
 import com.nasa4.note.domain.Comment;
 import com.nasa4.note.domain.Note;
 import com.nasa4.note.service.BaseService;
@@ -18,6 +19,8 @@ public class CommentServiceImpl extends BaseService implements CommentService {
 
 	@Autowired
 	private CommentRepository commentRepository;
+	@Autowired
+	private NoteRepository noteRepository;
 	
 	public void save(String sessionUserId, CommentForm commentForm, String reload) {
 		checkLogin(sessionUserId, reload);
@@ -27,6 +30,7 @@ public class CommentServiceImpl extends BaseService implements CommentService {
 		note.setId(commentForm.getNoteId());
 		comment.setNote(note);
 		commentRepository.save(comment);
+		/*noteRepository.updateCommentCount(commentForm.getNoteId());*/
 	}
 	
 	public Page<Comment> findAll(Pageable pageable) {

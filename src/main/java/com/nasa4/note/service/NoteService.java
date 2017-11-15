@@ -17,5 +17,7 @@ public interface NoteService {
 	
 	public void update(String sessionUserId, String id, NoteForm noteForm, String reload);
 	
-	public Page<Note> findAll(Pageable pageable);
+	public Page<Note> findAll(Pageable pageable, String keyword);
+	
+	public Page<Note> findByUserId(Pageable pageable, String sessionUserId, String reload);
 }

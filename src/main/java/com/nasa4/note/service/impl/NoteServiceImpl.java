@@ -23,7 +23,7 @@ public class NoteServiceImpl extends BaseService implements NoteService{
 		checkLogin(sessionUserId, reload);
 		Note note = new Note(sessionUserId);
 		BeanUtils.copyProperties(noteForm, note, Note.class);
-		note.setDescription(MarkdownUtil.substring(noteForm.getContent(), 100, " ..."));
+		note.setDescription(MarkdownUtil.substring(noteForm.getContent(), 255, " ..."));
 		note.setImage(MarkdownUtil.getFirstImage(noteForm.getContent()));
 		noteRepository.save(note);
 		return note.getId();
@@ -47,7 +47,7 @@ public class NoteServiceImpl extends BaseService implements NoteService{
 		checkLogin(sessionUserId, reload);
 		checkOwn(sessionUserId, note.getUser().getId());
 		BeanUtils.copyProperties(noteForm, note, Note.class);
-		note.setDescription(MarkdownUtil.substring(noteForm.getContent(), 100, " ..."));
+		note.setDescription(MarkdownUtil.substring(noteForm.getContent(), 255, " ..."));
 		note.setImage(MarkdownUtil.getFirstImage(noteForm.getContent()));
 		noteRepository.saveAndFlush(note);
 	}
@@ -66,8 +66,12 @@ public class NoteServiceImpl extends BaseService implements NoteService{
 		return note;
 	}
 	
-	public Page<Note> findAll(Pageable pageable) {
-		return noteRepository.findAll(pageable);
+	public Page<Note> findAll(Pageable pageable, String keyword) {
+		return noteRepository.findByTitleLikeOrContentLike(pageable, keyword);
+	}
+	
+	public Page<Note> findByUserId(Pageable pageable, String sessionUserId, String reload) {
+		return noteRepository.findByUserId(pageable, sessionUserId);
 	}
 
 }

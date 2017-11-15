@@ -24,78 +24,81 @@
   </head>
   <body>
     <div class="header">
-      <!-- <div class="drawer_button"><i class="material-icons">menu</i></div> -->
-      <div class="layout_header-row">
-        <div class="logo"><img class="ys" src="../static/images/ys.png" th:src="@{/images/ys.png}"><a href="javascript:void(0);">NASA4</a>
-          </div>
-        <ul class="top-menu">  
-          <li class="mitem">
-          <a class="add-ys " href="../templates/input.html" th:href="@{/input}"><i class="material-icons">add</i></a>
-        </li>
-          <li class="mitem">
-            <a class="mitema" href="javascript:void(0);" id="top-search"><i class="material-icons">search</i></a>
-            <div id="top-search-wrap">
-              <div class="tsw-inner">
-                <i id="top-search-close" class="material-icons">search</i>
-                <form><input type="text" name="keyword"></form>
-              </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="drawer_button"><i class="material-icons">menu</i></div>
+                <div class="layout_header-row">
+                    <div class="logo"><img class="ys" src="../static/images/ys.png" th:src="@{/images/ys.png}"><a href="javascript:void(0);">NASA4</a></div>
+                </div>
             </div>
-          </li>
-          <li class="mitem has-feedback hidden-xs">
-            <a class="mitema" id="notifications" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="material-icons">notifications</i>
-            </a>
-          </li>
-          <!-- <li class="mitem"><a class="mitema" href="javascript:void(0);"><i class="material-icons">comment</i></a></li> -->
-          <li class="mitem" th:if="${sessionUser?.id == null}"><a class="mitema" href="javascript:void(0);" th:href="@{/login}"><span>登录/注册</span></a></li><!-- 未登录 -->
-          <li class="mitem has-feedback" th:if="${sessionUser?.id != null}"><!-- 已登录 -->
-            <a class="mitema" id="top-thisuse" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="../static/images/face14.png" th:src="@{/images/face14.png}" alt="" class="header_userimg"/>
-            </a>
-            <div class="dropdown-menu dropright dropdown-menu-lg" aria-labelledby="top-thisuse">
-              <div id="notifications" class="listview">
-                <div class="lv-header"> 个人信息 </div>
-                <div class="lv-body" style="min-height: initial;">
-                  <div class="myInfo">
-                    <div class="myphoto">
-                      <div class="userhead" data-type="update_avatar">
-                        <a href="javascript:void(0);" style="display:block;"> 
-                          <img src="../static/images/face14.png" th:src="@{/images/face14.png}" alt="" width="96px;" height="96px;" /> 
-                          <span class="change-userhead">更改</span> 
-                        </a> 
+            <div class="col-md-6">
+                <ul class="top-menu">  
+                  <li class="mitem">
+                  <a class="add-ys " href="../templates/input.html" th:href="@{/input}"><i class="material-icons">add</i></a>
+                </li>
+                  <li class="mitem">
+                    <a class="mitema" href="javascript:void(0);" id="top-search"><i class="material-icons">search</i></a>
+                    <div id="top-search-wrap">
+                      <div class="tsw-inner">
+                        <i id="top-search-close" class="material-icons">search</i>
+                        <form id="search" action="/"><input type="text" name="keyword"></form>
                       </div>
                     </div>
-                    <div class="myshow">
-                      <div class="myname" th:text="${sessionUser?.account}">用户</div>
-                      <div class="Email" th:text="还未设置邮箱">123456@qq.com</div>
-                      <div class="signature" th:text="还未设置个性签名">这是个性签名</div>
-
-                      <a href="javascript:void(0);" class="btn btn-primary">我的账户</a>
-                      <a href="javascript:void(0);" class="btn btn-default">设置</a>
+                  </li>
+                  <!-- <li class="mitem has-feedback hidden-xs">
+                    <a class="mitema" id="notifications" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="material-icons">notifications</i>
+                    </a>
+                  </li> -->
+                  <!-- <li class="mitem"><a class="mitema" href="javascript:void(0);"><i class="material-icons">comment</i></a></li> -->
+                  <li class="mitem" th:if="${sessionUser?.id == null}"><a class="mitema" href="javascript:void(0);" th:href="@{/login}"><span>登录/注册</span></a></li><!-- 未登录 -->
+                  <li class="mitem has-feedback" th:if="${sessionUser?.id != null}"><!-- 已登录 -->
+                    <a class="mitema" id="top-thisuse" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="../static/images/face14.png" th:src="@{/images/face14.png}" alt="" class="header_userimg"/>
+                    </a>
+                    <div class="dropdown-menu dropright dropdown-menu-lg" aria-labelledby="top-thisuse">
+                      <div id="notifications" class="listview">
+                        <div class="lv-header"> 个人信息 </div>
+                        <div class="lv-body" style="min-height: initial;">
+                          <div class="myInfo">
+                            <div class="myphoto">
+                              <div class="userhead" data-type="update_avatar">
+                                <a href="javascript:void(0);" style="display:block;"> 
+                                  <img src="../static/images/face14.png" th:src="@{/images/face14.png}" alt="" width="96px;" height="96px;" /> 
+                                  <span class="change-userhead">更改</span> 
+                                </a> 
+                              </div>
+                            </div>
+                            <div class="myshow">
+                              <div class="myname" th:text="${sessionUser?.account}">用户</div>
+                              <div class="Email" th:text="还未设置邮箱">123456@qq.com</div>
+                              <div class="signature" th:text="还未设置个性签名">这是个性签名</div>
+        
+                              <a href="javascript:void(0);" class="btn btn-primary">我的账户</a>
+                              <a href="javascript:void(0);" class="btn btn-default">设置</a>
+                            </div>
+                          </div>
+                        </div>
+                        <a href="javascript:void(0);" th:href="@{/logout (reload=${url})}" class="lv-footer m-t-10 loginOut" id="JLogout">退出</a> 
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <a href="javascript:void(0);" th:href="@{/logout (reload=${url})}" class="lv-footer m-t-10 loginOut" id="JLogout">退出</a> 
-              </div>
+                  </li>
+                </ul>
             </div>
-          </li>
-        </ul>
+        </div>
       </div>
-    </div>
 
-    <!-- <div class="layout_drawer">左侧滑
+     <div class="layout_drawer"><!--左侧滑-->
       <ul class="drawer-menu">
         <li class="on"><a href="javascript:void(0);"><i class="material-icons">home</i>首页</a></li>
-        <li><a href="javascript:void(0);"><i class="material-icons">description</i>专栏</a></li>
-        <li><a href="javascript:void(0);"><i class="material-icons">photo</i>收藏集</a></li>
-        <li><a href="javascript:void(0);"><i class="material-icons">open_with</i>开源库</a></li>
+        <li><a href="my"><i class="material-icons">description</i>我的文章</a></li>
         <hr>
-        <li><a href="javascript:void(0);"><i class="material-icons">star</i>我关注的</a></li>
+        <!-- <li><a href="javascript:void(0);"><i class="material-icons">star</i>我关注的</a></li>
         <li><a href="javascript:void(0);"><i class="material-icons">desktop_mac</i>前端</a></li>
        <li><a href="javascript:void(0);"><i class="material-icons">palette</i>设计</a></li>
-        <li><a href="javascript:void(0);"><i class="material-icons">poll</i>产品</a></li>
+        <li><a href="javascript:void(0);"><i class="material-icons">poll</i>产品</a></li> -->
       </ul>
-    </div> -->
+    </div>
     <div class="layout_obfuscator"></div><!--左侧滑时的蒙板-->
 
     <div class="main">
@@ -105,16 +108,16 @@
 <div class="ys-left-img">
  <img  class="ye-img"src="../static/images/face14.png" th:src="@{/images/face14.png}">
  <span class="ya-write"><a href="../templates/input.html" th:href="@{/input}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>写文章</a></span>
- <span class="ya-ace"><a href="javascript:void(0);"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>分享链接</a></span>
- <a href="javascript:void(0);"><span class="ya-right">草稿</span></a>
+ <!-- <span class="ya-ace"><a href="javascript:void(0);"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>分享链接</a></span>
+ <a href="javascript:void(0);"><span class="ya-right">草稿</span></a> -->
 </div>
 <div class="ys-body">
  <span class="ya-ace woo"><a href="/">热门</a></span>
  <span class="ya-ace woo"><a href="/index/newest">最新</a></span>
  <span class="ya-write okk"><a href="/comment">评论</a></span>
- <span class="ya-ace woo riggt"><a href="javascript:void(0);">本周最热</a></span>
+ <!-- <span class="ya-ace woo riggt"><a href="javascript:void(0);">本周最热</a></span>
  <span class="ya-ace woo riggt"><a href="javascript:void(0);">本月最热</a></span>
- <span class="ya-ace woo riggt"><a href="javascript:void(0);">历史最热</a></span>
+ <span class="ya-ace woo riggt"><a href="javascript:void(0);">历史最热</a></span> -->
 
 </div>
       <div class="ys-body-weeo">

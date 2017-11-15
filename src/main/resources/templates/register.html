@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="icon" type="image/x-icon" href="/images/ys2.png">
   <title>注册 - NASA4</title>
   <link href="../static/css/bootstrap.min.css" rel="stylesheet"  th:href="@{/css/bootstrap.min.css}" />
   <link href="../static/css/icheck/icheck_all.css" rel="stylesheet" th:href="@{/css/icheck/icheck_all.css}">
@@ -19,7 +20,7 @@
                       <div class="logo-login"><img class="ys2" src="../static/images/ys2.png" th:src="@{/images/ys2.png}">
           </div>
       <div class="login-body">
-        <form action="#" method="post" th:action="@{/register}">
+        <form name="register" action="#" method="post" th:action="@{/register}">
           <div class="full-auth mt-3">
             <!-- <label for="account">输入手机或邮箱</label> -->
             <input  class="login_field" id="account" name="account" type="text" placeholder="输入账号">
@@ -82,6 +83,12 @@
 <script src="../static/js/base.js" th:src="@{/js/base.js}"></script>
 <script type="text/javascript">
 $(function() {
+	$(document).on("keyup", function(event){
+        if(event.keyCode ==13) {
+            $("[name=submit]").trigger("click");
+        }
+    })
+    
 	$(document).on("click", "[name=submit]", function(){
 		if($("[name=password]").val() != $("[name=apassword]").val()) {
 			$("[data-error=apassword]").html("两次密码不一致");

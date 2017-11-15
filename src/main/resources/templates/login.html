@@ -19,7 +19,7 @@
                 <div class="logo-login"><img class="ys2" src="/images/ys2.png">
           </div>
         <div class="login-body">
-          <form action="#" method="post" th:action="@{/login}">
+          <form name="login" action="#" method="post" th:action="@{/login}">
             <div class="full-auth mt-3">
               <!-- <label for="account">账号</label> -->
               <input class="login_field" id="account" name="account" / tabindex="1" type="text" placeholder="账号">
@@ -69,12 +69,15 @@
 <script src="../static/js/messenger/js/messenger.min.js" th:src="@{/js/messenger/js/messenger.min.js}"></script>
 <script src="../static/js/messenger/js/messenger-theme-flat.js" th:src="@{/js/messenger/js/messenger-theme-flat.js}"></script>
 <script src="../static/js/base.js" th:src="@{/js/base.js}"></script>
-<!-- <script>
+<script>
 $(function() {
-  refresh = function(url) {
-   $("#vcodeImg").attr("src", "/reg_vericode.jpg?" + Math.random());
- }
+	$(document).on("keyup", function(event){
+		if(event.keyCode ==13) {
+	        $("[name=submit]").trigger("click");
+		}
+	})
 });
-</script> -->
+</script>
+
 </body>
 </html>

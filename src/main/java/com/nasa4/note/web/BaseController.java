@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,9 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public abstract class BaseController {
-	@Autowired
-	private HttpServletRequest httpRequest;
-
+	
 	protected String sessionUserId = "";
 	protected User sessionUser;
 	
@@ -39,7 +36,7 @@ public abstract class BaseController {
 	}
 	
 	@ModelAttribute
-	public void getUrl(Model model) {
+	public void getUrl(Model model, HttpServletRequest httpRequest) {
 		String url = httpRequest.getRequestURL().toString();
 		if (StringUtils.isNotBlank(httpRequest.getQueryString()))
 			url += "?" + httpRequest.getQueryString();
@@ -47,7 +44,7 @@ public abstract class BaseController {
 	}
 	
 	@ModelAttribute
-	public void params_init(@RequestParam(value = "keyword", required = false) String keyword,
+	public void params_init(@RequestParam(value = "keyword", defaultValue="", required = false) String keyword,
 			@RequestParam(value = "pageSize", defaultValue = "20", required = false) Integer pageSize,
 			@RequestParam(value = "page", defaultValue = "1", required = false) Integer page,
 			@RequestParam(value = "reload", required = false) String reload) {

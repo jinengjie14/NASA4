@@ -43,8 +43,10 @@ public class Note {
 	private String link;
 	@Column(columnDefinition="text")
 	private String content;
+	@Column(columnDefinition="text")
 	private String description;
 	private String image;
+	private Integer commentCount;
 	
 	@CreationTimestamp
 	private Date createTime;
@@ -65,6 +67,7 @@ public class Note {
 	public Note(String userId) {
 		this.user = new User();
 		this.user.setId(userId);
+		this.commentCount = 0;
 	}
 	
 }
